@@ -34,23 +34,23 @@ namespace WpfClientNamedPipe
                 {
                     int day, Month, Year, TotalDays;
                     WCFNamedPipe.WCFNamedPipeClient wCFNamedPipeClient = new WCFNamedPipe.WCFNamedPipeClient("NetNamedPipeBinding_IWCFNamedPipe");
+
                     day = int.Parse(txtday.Text);
                     Month = int.Parse(txtMonth.Text);
                     Year = int.Parse(txtYear.Text);
-                    TotalDays = wCFNamedPipeClient.calculateDays(day, Month, Year); //assigning the output value from service Response  
-                    MessageBox.Show(Environment.UserName + "You are Currently " + Convert.ToString(TotalDays) + " days old", "Response From the Server", MessageBoxButton.OK, MessageBoxImage.Information);
 
+                    TotalDays = wCFNamedPipeClient.calculateDays(day, Month, Year);
+
+                    MessageBox.Show(Environment.UserName + "You are Currently " + Convert.ToString(TotalDays) + " days old", "Response From the Server", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
                     MessageBox.Show("Fields Should Not be Empty", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                
+                }                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception(ex.Message);
             }
            
         }
